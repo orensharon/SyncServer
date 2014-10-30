@@ -13,13 +13,22 @@ namespace SyncService
     {
         public string HelloWorld()
         {
+            string ip = null;
+            string username = "dummyuser";
+            DatabaseLinker.IPSyncBL db_bl = new DatabaseLinker.IPSyncBL();
+            
             OperationContext context = OperationContext.Current;
             MessageProperties messageProperties = context.IncomingMessageProperties;
             RemoteEndpointMessageProperty endpointProperty =
             messageProperties[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
-            Console.Write("Client IP: " + endpointProperty.Address);
 
-            return ":) Client IP: " + endpointProperty.Address;
+            ip = endpointProperty.Address;
+
+            //db_bl.SetPCIP(username, ip);
+            System.IO.File.WriteAllText(@"ip.txt", ip);
+            Console.WriteLine("Hello user: " + username + ", Your IP is: " + ip);
+
+            return endpointProperty.Address;
         }
     }
 }

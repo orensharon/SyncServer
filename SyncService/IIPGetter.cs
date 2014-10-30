@@ -14,7 +14,15 @@ namespace SyncService
     public interface IIPGetter
     {
         [OperationContract]
-        [WebGet(UriTemplate = "Test/name/{n}")]
-        string DoWork(string n);
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "xml/{username}")]
+        string GetPCIPXml(string username);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "json/{username}")]
+        string GetPCIPJson(string username);
     }
 }
