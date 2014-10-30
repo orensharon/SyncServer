@@ -11,41 +11,32 @@ namespace ServerConsole
     {
         static void Main(string[] args)
         {
+           ServiceHost IPSyncHost = new ServiceHost(typeof(SyncService.IPGetter));
+           ServiceHost IPGetterHost = new ServiceHost(typeof(SyncService.IPSync));
 
-           using (ServiceHost host = new ServiceHost(typeof(SyncService.IPGetter)))
+            IPSyncHost.Open();
+            Console.WriteLine("Service up and running at:");
+            foreach (var ea in IPSyncHost.Description.Endpoints)
             {
-                host.Open();
-
-                Console.WriteLine("Service up and running at:");
-                foreach (var ea in host.Description.Endpoints)
-                {
-                    Console.WriteLine(ea.Address);
-                }
-
-                Console.ReadLine();
-                host.Close();
+                Console.WriteLine(ea.Address);
             }
 
-            // ******************************
 
-            //          PC Sync HOST
+            IPGetterHost.Open();
 
-            // ******************************
-            
-            using (ServiceHost host = new ServiceHost(typeof(SyncService.IPSync)))
+            Console.WriteLine("Service up and running at:");
+            foreach (var ea in IPGetterHost.Description.Endpoints)
             {
-                host.Open();
-
-                Console.WriteLine("Service up and running at:");
-                foreach (var ea in host.Description.Endpoints)
-                {
-                    Console.WriteLine(ea.Address);
-                }
-
-                Console.ReadLine();
-                host.Close();
+                Console.WriteLine(ea.Address);
             }
+
+            Console.WriteLine("Hit enter to kill servier");
             Console.ReadLine();
+
+            IPGetterHost.Close();
+            IPSyncHost.Close();
+
+            
         }
     }
 }

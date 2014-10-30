@@ -10,18 +10,23 @@ namespace SyncService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "IPGetter" in both code and config file together.
     public class IPGetter : IIPGetter
     {
-        public string GetPCIPXml(string username)
+        public SyncResponse GetPCIPXml(string username)
         {
             string ip = System.IO.File.ReadAllText(@"ip.txt");
-            Console.WriteLine(ip);
-            return ip;
+            //Console.WriteLine(ip);
+
+            SyncResponse response = new SyncResponse { Username = username, IP = ip };
+
+            return response;
         }
 
-        public string GetPCIPJson(string username)
+        public SyncResponse GetPCIPJson(string username)
         {
             string ip = System.IO.File.ReadAllText(@"ip.txt");
-            Console.WriteLine(ip);
-            return ip;
+            //Console.WriteLine(ip);
+
+            SyncResponse response = new SyncResponse { Username = username, IP = ip };
+            return response;
         }
     }
 }

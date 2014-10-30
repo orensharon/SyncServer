@@ -17,12 +17,24 @@ namespace SyncService
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml,
             BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "xml/{username}")]
-        string GetPCIPXml(string username);
+        SyncResponse GetPCIPXml(string username);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "json/{username}")]
-        string GetPCIPJson(string username);
+        SyncResponse GetPCIPJson(string username);
     }
+
+    [DataContract]
+    public class SyncResponse
+    {
+        [DataMember]
+        public string Username { get; set; }
+
+        [DataMember]
+        public string IP { get; set; }
+    }
+
+
 }
