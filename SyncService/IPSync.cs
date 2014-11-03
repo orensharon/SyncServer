@@ -28,7 +28,7 @@ namespace SyncService
             System.IO.File.WriteAllText(@"ip.txt", ip);
             Console.WriteLine("Hello user: " + username + ", Your IP is: " + ip);
 
-            return endpointProperty.Address;
+            return ip;
         }
     }
 }
