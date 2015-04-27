@@ -14,23 +14,20 @@ namespace SyncService
     public interface IIPGetter
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml,
-            BodyStyle = WebMessageBodyStyle.Wrapped,
-            UriTemplate = "xml/{username}")]
-        SyncResponse GetPCIPXml(string username);
-
-        [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Wrapped,
-            UriTemplate = "json/{username}")]
-        SyncResponse GetPCIPJson(string username);
+        [WebInvoke(
+            Method = "GET", 
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "json/{token}")]
+        SyncResponse GetPCIPJson(string token);
     }
 
     [DataContract]
     public class SyncResponse
     {
-        [DataMember]
-        public string Username { get; set; }
+       // [DataMember]
+      //  public int UserID { get; set; }
 
         [DataMember]
         public string IP { get; set; }

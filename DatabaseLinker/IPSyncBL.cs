@@ -6,35 +6,47 @@ using System.Threading.Tasks;
 
 namespace DatabaseLinker
 {
+
     public class IPSyncBL
     {
+        
 
-        public string GetPCIP(string username)
+
+
+        public string GetPCIP(int user_id)
         {
-            // TODO:
             // From given username parameter - accessing the DB and gets back the PC IP
             // If user dosent exist or dosent logged in - returns an error, else returns the IP of the PC
+            string ip;
+            IPSyncDAL iPSyncDAL = new IPSyncDAL();
+            
+            ip = iPSyncDAL.GetPCIP(user_id);
+            iPSyncDAL.closeConnection();
 
-            return String.Empty;
+            return ip;
         }
 
-        public string SetPCIP(string username, string ip)
+        public void SetPCIP(int user_id, string ip)
         {
-            // TODO:
             // From given username parameter - accessing the DB and updates the IP of the user PC
-            // If user dosent exist or dosent logged in - returns an error, else returns the IP of the PC
+            IPSyncDAL iPSyncDAL = new IPSyncDAL();
 
-            return String.Empty;
+            iPSyncDAL.SetPCIP(user_id, ip);
+            iPSyncDAL.closeConnection();
+
+            iPSyncDAL.closeConnection();
         }
 
-        public bool DiscardPCIP(string username)
+        public void DiscardPCIP(int user_id)
         {
-            // TODO:
             // From given username parameter - accessing the DB and removing the IP of the PC.
             // This method will be called when the user will decide to stop the service or exit the program
-            // If user dosent exist or dosent logged in - returns an error, else returns true 
+            IPSyncDAL iPSyncDAL = new IPSyncDAL();
+            
+            iPSyncDAL.DiscardPCIP(user_id);
+            iPSyncDAL.closeConnection();
 
-            return true;
+            
         }
 
     }

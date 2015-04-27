@@ -12,6 +12,9 @@ namespace SyncService
     public interface IIPSync
     {
         [OperationContract]
-        string HelloWorld();
+        string Sync(string token);
+
+        [OperationContract]
+        bool DiscardPCIP(int user_id);
     }
 }

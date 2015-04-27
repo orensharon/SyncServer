@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerConsole", "ServerCons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLinker", "DatabaseLinker\DatabaseLinker.csproj", "{A4288772-EF6E-415D-9649-2A906A645BCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginService", "UserLogin\LoginService.csproj", "{01FDEED6-D39F-4A69-BB60-DDD88A0AD5EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{A4288772-EF6E-415D-9649-2A906A645BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4288772-EF6E-415D-9649-2A906A645BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4288772-EF6E-415D-9649-2A906A645BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01FDEED6-D39F-4A69-BB60-DDD88A0AD5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01FDEED6-D39F-4A69-BB60-DDD88A0AD5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01FDEED6-D39F-4A69-BB60-DDD88A0AD5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01FDEED6-D39F-4A69-BB60-DDD88A0AD5EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
