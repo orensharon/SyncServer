@@ -20,6 +20,9 @@ namespace SyncService
             int user_id;
             DatabaseLinker.IPSyncBL iPSyncBL;
 
+            // Get the auth token from the headers
+            //var authToken = WebOperationContext.Current.IncomingRequest.Headers["Authorization"];
+
             // Decode the user id from the token
             var payLoad = JWTManager.DecodeToken(token) as IDictionary<string, object>;
 

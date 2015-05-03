@@ -19,8 +19,8 @@ namespace SyncService
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "json/{token}")]
-        SyncResponse GetPCIPJson(string token);
+            UriTemplate = "json")]
+        SyncResponse GetPCIPJson();
     }
 
     [DataContract]

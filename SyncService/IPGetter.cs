@@ -12,14 +12,17 @@ namespace SyncService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "IPGetter" in both code and config file together.
     public class IPGetter : IIPGetter
     {
-        public SyncResponse GetPCIPJson(string token)
+        public SyncResponse GetPCIPJson()
         {
             DatabaseLinker.IPSyncBL iPSyncBL;
             iPSyncBL = new DatabaseLinker.IPSyncBL();
             int user_id;
 
+            // Get the auth token from the headers
+            var authToken = WebOperationContext.Current.IncomingRequest.Headers["Authorization"];
+
             // Decode the user id from the token
-            var payLoad = JWTManager.DecodeToken(token) as IDictionary<string, object>;
+            var payLoad = JWTManager.DecodeToken(authToken) as IDictionary<string, object>;
 
             
             if (payLoad == null)
