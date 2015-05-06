@@ -21,25 +21,30 @@ namespace DatabaseLinker
 
             string sqlString;
             SqlDataReader rdr;
-
+            string result;
 
             // SQL query
             sqlString = @"SELECT ip_address
                                 FROM Users
                                 WHERE user_id = " + user_id;
 
-            // Execute query
-            rdr = executeQuery(sqlString);
-
-
-            // Handle returns items from database
-            if (rdr.Read())
+            result = String.Empty;
+            using (SqlConnection con = new SqlConnection(ConntectString))
             {
-                return Convert.ToString(rdr["ip_address"]);
+                con.Open();
+                // Execute query
+                SqlCommand com = new SqlCommand(sqlString, con);
+                rdr = com.ExecuteReader();
+
+                // Handle returns items from database
+                if (rdr.Read())
+                {
+                    result = Convert.ToString(rdr["ip_address"]);
+                }
             }
 
             // IP error
-            return String.Empty;
+            return result;
         }
 
         public string SetPCIP(int user_id, string ip)
@@ -50,13 +55,18 @@ namespace DatabaseLinker
             string sqlString;
             SqlDataReader rdr;
 
-
             // SQL query
             sqlString = @"UPDATE Users 
                         SET ip_address='" + ip + "' WHERE user_id = " + user_id;
 
-            // Execute query
-            rdr = executeQuery(sqlString);
+            
+            using (SqlConnection con = new SqlConnection(ConntectString))
+            {
+                con.Open();
+                // Execute query
+                SqlCommand com = new SqlCommand(sqlString, con);
+                rdr = com.ExecuteReader();
+            }
 
             return String.Empty;
         }

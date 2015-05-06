@@ -20,7 +20,7 @@ namespace DatabaseLinker
 
             UsersDAL usersDAL = new UsersDAL();
             user_id = usersDAL.Login(username, password);
-            usersDAL.closeConnection();
+            //usersDAL.closeConnection();
 
             return user_id;
         }

@@ -11,8 +11,6 @@ namespace DatabaseLinker
     {
         
 
-
-
         public string GetPCIP(int user_id)
         {
             // From given username parameter - accessing the DB and gets back the PC IP
@@ -21,7 +19,6 @@ namespace DatabaseLinker
             IPSyncDAL iPSyncDAL = new IPSyncDAL();
             
             ip = iPSyncDAL.GetPCIP(user_id);
-            iPSyncDAL.closeConnection();
 
             return ip;
         }
@@ -32,9 +29,8 @@ namespace DatabaseLinker
             IPSyncDAL iPSyncDAL = new IPSyncDAL();
 
             iPSyncDAL.SetPCIP(user_id, ip);
-            iPSyncDAL.closeConnection();
 
-            iPSyncDAL.closeConnection();
+            //iPSyncDAL.closeConnection();
         }
 
         public void DiscardPCIP(int user_id)
@@ -44,7 +40,6 @@ namespace DatabaseLinker
             IPSyncDAL iPSyncDAL = new IPSyncDAL();
             
             iPSyncDAL.DiscardPCIP(user_id);
-            iPSyncDAL.closeConnection();
 
             
         }

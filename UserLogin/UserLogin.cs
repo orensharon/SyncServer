@@ -26,11 +26,9 @@ namespace LoginService
             username = request.Username;
             password = request.Password;
 
-            usersBL = new DatabaseLinker.UsersBL();
 
             response = new LoginResponse();
             usersBL = new DatabaseLinker.UsersBL();
-
 
             user_id = usersBL.Login(username, password);
 
@@ -53,6 +51,8 @@ namespace LoginService
                 response.Token = JWTManager.CreateToken(user_id, username);
             }
 
+            //var context = WebOperationContext.Current;
+            //context.OutgoingResponse.Headers.Add("Authorization", response.Token);
             return response;
         }
 

@@ -19,26 +19,32 @@ namespace DatabaseLinker
             
             string sqlString;
             SqlDataReader rdr;
+            int result;
 
-           
             // SQL query
             sqlString = @"SELECT user_id
                                 FROM Users
-                                WHERE username = '" + username + "' AND password = '" + password +"'";
-            
-            // Execute query
-            rdr = executeQuery(sqlString);
+                                WHERE username = '" + username + "' AND password = '" + password + "'";
 
-
-            // Handle returns items from database
-            if (rdr.Read())
+            result = -1; // as default
+            using (SqlConnection con = new SqlConnection(ConntectString))
             {
-                // TODO: make sure user realy exists
-                return Convert.ToInt32(rdr["user_id"]);
-            }
+                con.Open();
 
+                // Execute query
+                SqlCommand com = new SqlCommand(sqlString, con);
+                rdr = com.ExecuteReader();
+
+                // Handle returns items from database
+                if (rdr.Read())
+                {
+                    // TODO: make sure user realy exists
+                    result = Convert.ToInt32(rdr["user_id"]);
+                }
+            }
+           
             // User doesn't exist
-            return -1;
+            return result;
         }
 
 
