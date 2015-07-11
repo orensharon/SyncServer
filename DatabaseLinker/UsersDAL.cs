@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseLinker
 {
-    class UsersDAL : DB
+    public class UsersDAL : DB
     {
 
         /*
@@ -21,10 +21,13 @@ namespace DatabaseLinker
             SqlDataReader rdr;
             int result;
 
+
+
+
             // SQL query
             sqlString = @"SELECT user_id
                                 FROM Users
-                                WHERE username = '" + username + "' AND password = '" + password + "'";
+                                WHERE username = @User AND password = @Password";
 
             result = -1; // as default
             using (SqlConnection con = new SqlConnection(ConntectString))
@@ -33,6 +36,13 @@ namespace DatabaseLinker
 
                 // Execute query
                 SqlCommand com = new SqlCommand(sqlString, con);
+
+                SqlParameter[] myparm = new SqlParameter[2];
+                myparm[0] = new SqlParameter("@User", username);
+                myparm[1] = new SqlParameter("@Password", password);
+                com.Parameters.Add(myparm[0]);
+                com.Parameters.Add(myparm[1]);
+
                 rdr = com.ExecuteReader();
 
                 // Handle returns items from database
@@ -43,16 +53,9 @@ namespace DatabaseLinker
                 }
             }
            
-            // User doesn't exist
+            // return user id
             return result;
         }
 
-
-        public bool SignIn(string username, string password)
-        {
-            // TODO: check if database already has a username such as given. If exist return false
-            // If not exist then create a new record with username and password, make login, save season and return true
-            return true;
-        }
     }
 }

@@ -12,7 +12,7 @@ namespace SyncService
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "IPGetter" in both code and config file together.
     public class IPGetter : IIPGetter
     {
-        public SyncResponse GetPCIPJson()
+        public SyncResponse GetSafeIPJson()
         {
             DatabaseLinker.IPSyncBL iPSyncBL;
             iPSyncBL = new DatabaseLinker.IPSyncBL();
@@ -35,7 +35,7 @@ namespace SyncService
             // Read user id from the token and query database
             user_id = Convert.ToInt32(payLoad["UserID"]);
 
-            string ip = iPSyncBL.GetPCIP(user_id);
+            string ip = iPSyncBL.GetSafeIP(user_id);
             Console.WriteLine("Requested by: " + user_id + ", ip: " + ip);
 
             SyncResponse response = new SyncResponse {/* UserID = parsedUserId,*/ IP = ip };

@@ -11,14 +11,14 @@ namespace DatabaseLinker
     {
         
 
-        public string GetPCIP(int user_id)
+        public string GetSafeIP(int user_id)
         {
             // From given username parameter - accessing the DB and gets back the PC IP
             // If user dosent exist or dosent logged in - returns an error, else returns the IP of the PC
             string ip;
             IPSyncDAL iPSyncDAL = new IPSyncDAL();
             
-            ip = iPSyncDAL.GetPCIP(user_id);
+            ip = iPSyncDAL.GetSafeIP(user_id);
 
             return ip;
         }

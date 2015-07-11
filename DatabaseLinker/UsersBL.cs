@@ -12,7 +12,7 @@ namespace DatabaseLinker
 
         /*
          * User attempt to login into the system with a given username and password
-         * Returns true upon successful login, false otherwise
+         * Returns user id upon successful login, -1 otherwise
          */
         public int Login(string username, string password)
         {
@@ -20,16 +20,9 @@ namespace DatabaseLinker
 
             UsersDAL usersDAL = new UsersDAL();
             user_id = usersDAL.Login(username, password);
-            //usersDAL.closeConnection();
-
+  
             return user_id;
         }
 
-
-        public bool SignIn(string username, string password)
-        {
-            return true;
-           // return usersDAL.SignIn(username, password);
-        }
     }
 }

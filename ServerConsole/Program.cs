@@ -15,12 +15,6 @@ namespace ServerConsole
         static void Main(string[] args)
         {
 
-            List<string> test;
-            test = new List<string>();
-            test.Add("asdads");
-            test.Add("asdads1");
-            var result = String.Join(", ", test.ToArray());
-            Console.WriteLine(result);
 
 
             // Creation of the services

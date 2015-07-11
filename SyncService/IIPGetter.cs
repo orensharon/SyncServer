@@ -15,19 +15,17 @@ namespace SyncService
     {
         [OperationContract]
         [WebInvoke(
-            Method = "GET", 
+            Method = "POST", 
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "json")]
-        SyncResponse GetPCIPJson();
+        SyncResponse GetSafeIPJson();
     }
 
     [DataContract]
     public class SyncResponse
     {
-       // [DataMember]
-      //  public int UserID { get; set; }
 
         [DataMember]
         public string IP { get; set; }

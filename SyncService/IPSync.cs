@@ -38,7 +38,7 @@ namespace SyncService
             iPSyncBL = new DatabaseLinker.IPSyncBL();
 
             ip = ExtractIPFromSender(ip);
-            currentIp = iPSyncBL.GetPCIP(user_id);
+            currentIp = iPSyncBL.GetSafeIP(user_id);
 
             if (!ip.Equals(currentIp))
             {
@@ -46,7 +46,7 @@ namespace SyncService
                 iPSyncBL.SetPCIP(user_id, ip);
             }
             
-            Console.WriteLine("IP Sync from logged user: " + user_id + ", IP is: " + iPSyncBL.GetPCIP(user_id));
+            Console.WriteLine("IP Sync from logged user: " + user_id + ", IP is: " + iPSyncBL.GetSafeIP(user_id));
 
             // Returning the saved IP
             return ip;
